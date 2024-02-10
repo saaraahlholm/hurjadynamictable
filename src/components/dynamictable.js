@@ -111,7 +111,11 @@ function DynamicTable() {
                 <input 
                 type='text' 
                     id='value' 
-                    value={inputValue} onChange={(e) => setInputValue(e.target.value)} className='form-control rounded-pill' style={{minWidth: '80px'}} />
+                    value={inputValue} onChange={(e) => {
+                        if (/^[1-9]*$/.test(e.target.value)) { //input-elementtiin voi syöttää vain numeroita
+                            setInputValue(e.target.value);
+                        }
+                    }} className='form-control rounded-pill' style={{minWidth: '80px'}} />
                 </div>
                 <div className='d-flex justify-content-center'>
         <div className='btn-group'>
