@@ -41,7 +41,7 @@ function DynamicTable() {
         if (selectedCell && inputValue !== '') { //jos solu on valittu ja syötetty arvo, jolla solun arvoon halutaan vaikuttaa..
             const [rowIndex, colIndex] = selectedCell;
             const value = parseInt(inputValue);
-            fetch('http://localhost:5000/update-cell', { //...niin päivitetään serverin päässä solun arvo (PUT-metodilla)
+            fetch('http://localhost:5000/update-cell', { //...niin lähetetään servulle PUT-pyyntö
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
