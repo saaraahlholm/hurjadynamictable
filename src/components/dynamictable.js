@@ -11,7 +11,7 @@ function DynamicTable() {
 
     function generateTableFromServer(rows, columns) { //haetaan serverin päässä generoitu taulukko
         fetch('http://localhost:5000/generate-table', { //lähetetään POST-pyyntö /generate-table polkuun 
-            method: 'POST', 
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -68,27 +68,27 @@ function DynamicTable() {
     return (
         <div className='container mt-5'>
             <h1 className='text-center mb-5'>
-                <span className='fw-light' style={{backgroundColor: 'red', color: 'white', fontStyle:'italic', padding:'20px'}}>Hurjan<i></i></span> hieno dynaaminen taulukko
+                <span className='fw-light' style={{ backgroundColor: 'red', color: 'white', fontStyle: 'italic', padding: '20px' }}>Hurjan<i></i></span> hieno dynaaminen taulukko
             </h1>
             <form onSubmit={(e) => { e.preventDefault(); generateTableFromServer(rows, columns); }} class='row justify-content-center'>
                 <div class='form-group mb-3'>
                     <label htmlFor='rows' className='form-label'>Rows:</label>
-                    <input type='number' id='rows' min='1' value={rows} onChange={(e) => setRows(parseInt(e.target.value))} class='form-control rounded-pill' style={{minWidth: '80px'}} />
+                    <input type='number' id='rows' min='1' value={rows} onChange={(e) => setRows(parseInt(e.target.value))} class='form-control rounded-pill' style={{ minWidth: '80px' }} />
                 </div>
                 <div class='form-group mb-3'>
                     <label htmlFor='columns' className='form-label'>Columns:</label>
-                    <input type='number' id='columns' min='1' value={columns} onChange={(e) => setColumns(parseInt(e.target.value))} class='form-control rounded-pill' style={{minWidth: '80px'}} />
+                    <input type='number' id='columns' min='1' value={columns} onChange={(e) => setColumns(parseInt(e.target.value))} class='form-control rounded-pill' style={{ minWidth: '80px' }} />
                 </div>
                 <button type='submit' class='btn btn-primary'>Generate Table</button>
-                
+
             </form>
             <div className='table-responsive'>
-            <table className='table mt-5 mb-5'>
+                <table className='table mt-5 mb-5'>
                     <tbody>
                         {tableData.map((rowData, rowIndex) => (
                             <tr key={rowIndex}>
                                 {rowData.map((cellData, colIndex) => (
-                                    <td key={colIndex} 
+                                    <td key={colIndex}
                                         onClick={() => {
                                             setSelectedCell([rowIndex, colIndex]);
                                             setActiveCell([rowIndex, colIndex]);
@@ -104,27 +104,27 @@ function DynamicTable() {
                     </tbody>
                 </table>
             </div>
-            
+
             <div className='mb-3'>
                 <div className='mb-3'>
-                <label htmlFor='value' className='form-label'>Insert value:</label>
-                <input 
-                type='text' 
-                    id='value' 
-                    value={inputValue} onChange={(e) => {
-                        if (/^[1-9]*$/.test(e.target.value)) { //input-elementtiin voi syöttää vain numeroita
-                            setInputValue(e.target.value);
-                        }
-                    }} className='form-control rounded-pill' style={{minWidth: '80px'}} />
+                    <label htmlFor='value' className='form-label'>Insert value:</label>
+                    <input
+                        type='text'
+                        id='value'
+                        value={inputValue} onChange={(e) => {
+                            if (/^[1-9]*$/.test(e.target.value)) { //input-elementtiin voi syöttää vain numeroita
+                                setInputValue(e.target.value);
+                            }
+                        }} className='form-control rounded-pill' style={{ minWidth: '80px' }} />
                 </div>
                 <div className='d-flex justify-content-center'>
-        <div className='btn-group'>
-            <button onClick={() => handleOperation('+')} className='btn btn-primary me-1 btn-block'>+</button>
-            <button onClick={() => handleOperation('-')} className='btn btn-primary me-1 btn-block'>-</button>
-            <button onClick={() => handleOperation('*')} className='btn btn-primary me-1 btn-block'>x</button>
-            <button onClick={() => handleOperation('/')} className='btn btn-primary me-1 btn-block'>/</button>
-        </div>
-    </div>
+                    <div className='btn-group'>
+                        <button onClick={() => handleOperation('+')} className='btn btn-primary me-1 btn-block'>+</button>
+                        <button onClick={() => handleOperation('-')} className='btn btn-primary me-1 btn-block'>-</button>
+                        <button onClick={() => handleOperation('*')} className='btn btn-primary me-1 btn-block'>x</button>
+                        <button onClick={() => handleOperation('/')} className='btn btn-primary me-1 btn-block'>/</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
